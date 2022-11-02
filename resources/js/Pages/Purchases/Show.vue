@@ -3,22 +3,13 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import { onMounted, reactive, ref, computed } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
-import { getToday } from '@/common'
-import MicroModal from '@/Components/MicroModal.vue'
 const props = defineProps({
     'items': Array,
     'order': Array
 })
 onMounted(() => {
-    form.date = getToday()
-    props.items.forEach(item => {
-        itemList.value.push({
-            id: item.id,
-            name: item.name,
-            price: item.price,
-            quantity: 0
-        })
-    })
+    console.log(props.items)
+    console.log(props.order[0].customer_name)
 })
 const itemList = ref([])
 const form = reactive({
