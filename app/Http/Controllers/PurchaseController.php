@@ -92,7 +92,22 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        //
+        // 小計
+        $items = Order::where('id', $purchase->id)->get();
+
+        // 合計
+        $order = Order::groupBy('id')
+        ->where('id', $purchase->id)
+        ->selectRaw('id, sum(subtotal) as total,
+        customer_name, status, created_at')
+        ->get();
+
+        // dd($items, $order);
+
+        return Inertia::render('Purchases/Show', [
+            'items' => $items,
+            'order' => $order
+        ]);
     }
 
     /**
