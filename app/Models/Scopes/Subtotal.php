@@ -17,6 +17,7 @@ class Subtotal implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
+        //4つのテーブルをJOIN
         $sql = 'select purchases.id as id
         , items.id as item_id
         , item_purchase.id as pivot_id
