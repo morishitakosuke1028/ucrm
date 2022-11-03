@@ -3,6 +3,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import { onMounted, reactive, ref, computed } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
+import dayjs from 'dayjs'
+
 const props = defineProps({
     'items': Array,
     'order': Array
@@ -11,44 +13,15 @@ onMounted(() => {
     console.log(props.items)
     console.log(props.order[0].customer_name)
 })
-const itemList = ref([])
-const form = reactive({
-    date: null,
-    customer_id: null,
-    status: true,
-    items: []
-})
-const totalPrice = computed(() => {
-    let total = 0
-    itemList.value.forEach(item => {
-        total += item.price * item.quantity
-    })
-    return total
-})
-const storePurchase = () => {
-    itemList.value.forEach(item => {
-        if (item.quantity > 0) {
-            form.items.push({
-                id: item.id,
-                quantity: item.quantity
-            })
-        }
-    })
-    Inertia.post(route('purchases.store'), form)
-}
-const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-const setCustomerId = id => {
-    form.customer_id = id
-}
 </script>
 
 <template>
-    <Head title="購入画面" />
+    <Head title="購買履歴 詳細画面" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                購入画面
+                購買履歴 詳細画面
             </h2>
         </template>
 
@@ -66,13 +39,18 @@ const setCustomerId = id => {
                                             <div class="p-2 w-full">
                                                 <div class="relative">
                                                     <label for="date" class="leading-7 text-sm text-gray-600">日付</label>
-                                                    <input type="date" id="date" name="date" v-model="form.date" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                    <div id="date" name="date" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                        {{ dayjs(props.order[0].created_at).format('YYYY-MM-DD') }}
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="p-2 w-full">
                                                 <div class="relative">
                                                     <label for="customer" class="leading-7 text-sm text-gray-600">会員名</label>
+                                                    <div id="date" name="date" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                        {{ props.order[0].customer_name }}
+                                                    </div>
                                                     <MicroModal @update:customerId="setCustomerId" />
                                                 </div>
                                             </div>
@@ -89,16 +67,12 @@ const setCustomerId = id => {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr v-for="item in itemList" :key="item.id">
-                                                            <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.id }}</td>
-                                                            <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.name }}</td>
-                                                            <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.price }}</td>
-                                                            <td class="border-b-2 border-gray-200 px-4 py-3">
-                                                                <select name="quantity" v-model="item.quantity">
-                                                                    <option v-for="q in quantity" :value="q">{{ q }}</option>
-                                                                </select>
-                                                            </td>
-                                                            <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.price * item.quantity }}</td>
+                                                        <tr v-for="item in items" :key="item.id">
+                                                            <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.item_id }}</td>
+                                                            <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.item_name }}</td>
+                                                            <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.item_price }}</td>
+                                                            <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.quantity }}</td>
+                                                            <td class="border-b-2 border-gray-200 px-4 py-3">{{ item.subtotal }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -108,9 +82,28 @@ const setCustomerId = id => {
 
                                             <div class="p-2 w-full">
                                                 <div class="">
+                                                    <label for="price" class="leading-7 text-sm text-gray-600">ステータス</label><br>
+                                                    <div v-if="props.order[0].status == true" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                        未キャンセル
+                                                    </div>
+                                                    <div v-if="props.order[0].status == false" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                        キャンセル済み
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="p-2 w-full">
+                                                <div class="">
                                                     <label for="price" class="leading-7 text-sm text-gray-600">合計金額</label><br>
                                                     <div class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                                        {{ totalPrice }} 円
+                                                        {{ props.order[0].total }} 円
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="p-2 w-full">
+                                                <div class="">
+                                                    <label for="price" class="leading-7 text-sm text-gray-600">キャンセル日</label><br>
+                                                    <div v-if="props.order[0].status == false" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                        {{ dayjs(props.order[0].updated_at).format('YYYY/MM/DD') }}
                                                     </div>
                                                 </div>
                                             </div>
