@@ -63,7 +63,7 @@ const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
                     <div class="p-6 bg-white border-b border-gray-200">
 
                         <section class="text-gray-600 body-font relative">
-                            <form @submit.prevent="storePurchase">
+                            <form @submit.prevent="updatePurchase(form.id)">
                                 <div class="container px-5 py-8 mx-auto">
 
                                     <div class="lg:w-1/2 md:w-2/3 mx-auto">
@@ -129,7 +129,7 @@ const quantity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
                                             </div>
 
                                             <div class="p-2 w-full">
-                                                <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">登録する</button>
+                                                <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">更新する</button>
                                             </div>
 
                                         </div>
