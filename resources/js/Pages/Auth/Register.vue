@@ -9,6 +9,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 const form = useForm({
     name: '',
     email: '',
+    member: '1',
     password: '',
     password_confirmation: '',
     terms: false,
@@ -27,25 +28,33 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" value="名前" />
                 <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="メールアドレス" />
                 <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="member" value="所属" />
+                <input id="member1" type="radio" class="mt-1 mr-3" v-model="form.member" required autocomplete="member" value="1"/>営業<br>
+                <input id="member2" type="radio" class="mt-1 mr-3" v-model="form.member" required autocomplete="member" value="2" />システムエンジニア<br>
+                <input id="member3" type="radio" class="mt-1 mr-3" v-model="form.member" required autocomplete="member" value="3" />マークアップエンジニア<br>
+                <InputError class="mt-2" :message="form.errors.member" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="password" value="パスワード" />
                 <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
+                <InputLabel for="password_confirmation" value="パスワード確認" />
                 <TextInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>

@@ -7,6 +7,10 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 
+defineProps({
+    users: Object
+})
+
 const showingNavigationDropdown = ref(false);
 </script>
 
@@ -29,6 +33,12 @@ const showingNavigationDropdown = ref(false);
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
+                                </NavLink>
+                                <NavLink :href="route('users.index')" :active="route().current('users.index')">
+                                    ダッシュボード
+                                </NavLink>
+                                <NavLink :href="route('users.show', { user: user.id })" :active="route().current('users.show')">
+                                    ダッシュボード詳細
                                 </NavLink>
                                 <NavLink :href="route('purchases.create')" :active="route().current('purchases.create')">
                                     購入画面
