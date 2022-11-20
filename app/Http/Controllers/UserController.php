@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -39,7 +39,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->member = $request->member;
         $user->email = $request->email;
-        // $user->password = Hash::make($request->password);
+        $user->password = Hash::make($request->password);
         $user->save();
         return to_route('users.index')
         ->with([
