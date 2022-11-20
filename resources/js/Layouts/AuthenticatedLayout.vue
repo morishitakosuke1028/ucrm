@@ -37,9 +37,9 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('users.index')" :active="route().current('users.index')">
                                     ダッシュボード
                                 </NavLink>
-                                <NavLink :href="route('users.show', { user: user.id })" :active="route().current('users.show')">
+                                <!-- <NavLink :href="route('users.show', { user: user.id })" :active="route().current('users.show')">
                                     ダッシュボード詳細
-                                </NavLink>
+                                </NavLink> -->
                                 <NavLink :href="route('purchases.create')" :active="route().current('purchases.create')">
                                     購入画面
                                 </NavLink>

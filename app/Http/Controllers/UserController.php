@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -31,15 +32,16 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UpdateItemRequest $request, Item $item)
+    public function update(Request $request, $id)
     {
         // dd($item->name, $request->name);
-        $item->name = $request->name;
-        $item->memo = $request->memo;
-        $item->price = $request->price;
-        $item->is_selling = $request->is_selling;
-        $item->save();
-        return to_route('items.index')
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->member = $request->member;
+        $user->email = $request->email;
+        // $user->password = Hash::make($request->password);
+        $user->save();
+        return to_route('users.index')
         ->with([
             'message' => '更新しました。',
             'status' => '成功しました。',
