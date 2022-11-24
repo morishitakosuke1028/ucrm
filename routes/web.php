@@ -39,10 +39,16 @@ Route::get('/component-test', function () {
     }
 );
 
-Route::get('/users/index', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::get('/users/index', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('users.index');
+Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth', 'verified'])->name('users.show');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'verified'])->name('users.edit');
+// Route::get('/users/{user}/edit', function (User $user) {
+//     // return Inertia::render('users.edit');
+//     return Inertia::render('Users/Edit', [
+//             'user' => $user
+//         ]);
+// })->middleware(['auth', 'verified'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth', 'verified'])->name('users.update');
 
 
 Route::get('/inertia/index', [InertiaTestController::class, 'index'])->name('inertia.index');

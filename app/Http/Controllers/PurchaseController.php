@@ -76,7 +76,7 @@ class PurchaseController extends Controller
 
             DB::commit();
 
-            return to_route('dashboard');
+            return to_route('users.index');
 
         } catch(\Exception $e){
             DB::rollback();
@@ -183,7 +183,7 @@ class PurchaseController extends Controller
         $purchase->items()->sync($items);
 
         DB::commit();
-        return to_route('dashboard');
+        return to_route('users.index');
     } catch(\Exception $e){
         DB::rollback();
     }
