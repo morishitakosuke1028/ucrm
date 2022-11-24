@@ -37,11 +37,12 @@ defineProps({
                                         </thead>
                                         <tbody>
                                             <tr v-for="user in users" :key="user.id">
-                                                <span v-if="user.id === 1">
+                                                <span v-if="$logedinUser">
                                                     <td class="px-4 py-3">
                                                         <Link as="button" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" :href="route('users.show', { user: user.id })">
                                                         編集する
                                                         </Link>
+                                                        {{ user.id }}
                                                     </td>
                                                 </span>
                                                     <td class="px-4 py-3">{{ user.name }}</td>

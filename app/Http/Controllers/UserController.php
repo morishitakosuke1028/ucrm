@@ -13,7 +13,9 @@ class UserController extends Controller
 
     public function index()
     {
+        // $logedinUser = auth()->user();
         $user_id = Auth::id();
+        // dd($user_id);
         return Inertia::render('Users/Index', [
             'users' => User::select('id', 'name', 'member', 'email')->get()
         ]);
