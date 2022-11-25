@@ -2,9 +2,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import FlashMessage from '@/Components/FlashMessage.vue';
+
 defineProps({
-    users: Array
+    users: Array,
+    user_id: Object
 })
+
 </script>
 
 <template>
@@ -35,23 +38,22 @@ defineProps({
                                                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">email</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr v-for="user in users" :key="user.id">
-                                                <span v-if="$logedinUser">
+                                        <tbody v-for="user in users" :key="user.id">
+                                            <tr v-if="user_id === user.id">
+                                                <span>
                                                     <td class="px-4 py-3">
                                                         <Link as="button" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" :href="route('users.show', { user: user.id })">
-                                                        編集する
-                                                        </Link>
-                                                        {{ user.id }}
-                                                    </td>
-                                                </span>
-                                                    <td class="px-4 py-3">{{ user.name }}</td>
-                                                    <td class="px-4 py-3">
-                                                        <span v-if="user.member === '1'">営業</span>
-                                                        <span v-if="user.member === '2'">システムエンジニア</span>
-                                                        <span v-if="user.member === '3'">マークアップエンジニア</span>
-                                                    </td>
-                                                    <td class="px-4 py-3">{{ user.email }}</td>
+                                                    編集する
+                                                </Link>
+                                            </td>
+                                        </span>
+                                        <td class="px-4 py-3">{{ user.name }}</td>
+                                                <td class="px-4 py-3">
+                                                    <span v-if="user.member === '1'">営業</span>
+                                                    <span v-if="user.member === '2'">システムエンジニア</span>
+                                                    <span v-if="user.member === '3'">マークアップエンジニア</span>
+                                                </td>
+                                                <td class="px-4 py-3">{{ user.email }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
