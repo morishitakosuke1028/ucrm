@@ -27,7 +27,9 @@ defineProps({
                         <section class="text-gray-600 body-font">
                             <div class="container px-5 py-24 mx-auto">
                                 <FlashMessage />
-
+                                <div class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto">
+                                    <Link as="button" :href="route('posts.create')" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">新規投稿</Link>
+                                </div>
                                 <div class="lg:w-2/3 w-full mx-auto overflow-auto">
                                     <table class="table-auto w-full text-left whitespace-no-wrap">
                                         <thead>
@@ -41,7 +43,7 @@ defineProps({
                                         <tbody v-for="post in posts" :key="post.id">
                                             <tr>
                                                 <td class="px-4 py-3">
-                                                    <Link as="button" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" :href="route('posts.show', { post: post.id })">
+                                                    <Link class="text-blue-400" :href="route('posts.show', { post: post.id })">
                                                         {{ post.id }}
                                                     </Link>
                                                 </td>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Inertia\Inertia;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -28,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Posts/Create');
     }
 
     /**
@@ -39,7 +41,18 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $user_id = Auth::id();
+        Post::create([
+            'user_id' => $user_id,
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return to_route('posts.index')
+        ->with([
+            'message' => '新規投稿しました。',
+            'status' => '成功しました。',
+        ]);
     }
 
     /**
