@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Inertia\Inertia;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
@@ -15,7 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+       return Inertia::render('Posts/Index', [
+            'posts' => Post::select('id', 'user_id', 'title', 'content', 'created_at')->get()
+        ]);
     }
 
     /**

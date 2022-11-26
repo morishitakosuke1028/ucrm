@@ -34,6 +34,9 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('users.index')" :active="route().current('users.index')">
                                     ダッシュボード
                                 </NavLink>
+                                <NavLink :href="route('posts.index')" :active="route().current('posts.index')">
+                                    投稿一覧
+                                </NavLink>
                                 <NavLink :href="route('purchases.create')" :active="route().current('purchases.create')">
                                     購入画面
                                 </NavLink>

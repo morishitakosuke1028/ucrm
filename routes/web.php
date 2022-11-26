@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\AnalysisController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::resource('customers', CustomerController::class)
 ->middleware(['auth', 'verified']);
 Route::resource('purchases', PurchaseController::class)
 ->middleware(['auth', 'verified']);
+Route::resource('posts', PostController::class)
+->middleware(['auth', 'verified']);
 
 Route::get('analysis', [AnalysisController::class, 'index'])->name('analysis');
 Route::get('/inertia-test', function () {
@@ -42,12 +45,6 @@ Route::get('/component-test', function () {
 Route::get('/users/index', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('users.index');
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth', 'verified'])->name('users.show');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'verified'])->name('users.edit');
-// Route::get('/users/{user}/edit', function (User $user) {
-//     // return Inertia::render('users.edit');
-//     return Inertia::render('Users/Edit', [
-//             'user' => $user
-//         ]);
-// })->middleware(['auth', 'verified'])->name('users.edit');
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth', 'verified'])->name('users.update');
 
 
