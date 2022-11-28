@@ -2,12 +2,28 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import FlashMessage from '@/Components/FlashMessage.vue';
+import Pagination from '@/Components/Pagination.vue'
 import dayjs from 'dayjs'
 
-defineProps({
-    posts: Array
-})
+// const array = new Array(defineProps({
+//     posts: Array
+// }));
+const prop = defineProps({
+    posts: Object
+});
 
+// array.sort((x, y) => {
+//     // 昇順
+//     return x - y
+//     // 降順
+//     // return y - x
+// })
+
+// const ascArray = array.sort((a, b) => new Date(a) - new Date(b));
+prop.posts.data.sort();
+console.log(prop);
+
+// const postArr = props.post
 </script>
 
 <template>
@@ -40,7 +56,7 @@ defineProps({
                                                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">投稿日</th>
                                             </tr>
                                         </thead>
-                                        <tbody v-for="post in posts" :key="post.id">
+                                        <tbody v-for="post in prop.posts.data" :key="post.id">
                                             <tr>
                                                 <td class="px-4 py-3">
                                                     <Link class="text-blue-400" :href="route('posts.show', { post: post.id })">
@@ -55,6 +71,7 @@ defineProps({
                                     </table>
                                 </div>
                             </div>
+                            <Pagination class="mt-6" :links="prop.posts.links"></Pagination>
                         </section>
                     </div>
                 </div>

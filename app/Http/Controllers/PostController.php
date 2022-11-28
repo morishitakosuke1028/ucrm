@@ -18,8 +18,11 @@ class PostController extends Controller
      */
     public function index()
     {
-       return Inertia::render('Posts/Index', [
-            'posts' => Post::select('id', 'user_id', 'title', 'content', 'created_at')->get()
+        //@TODO編集後updated_atの順番確認
+        $posts = Post::latest('id', 'user_id', 'title', 'content', 'created_at')->paginate(3);
+        return Inertia::render('Posts/Index', [
+            // 'posts' => Post::orderByRaw('id', 'user_id', 'title', 'content', 'created_at')->get()
+            'posts' => $posts
         ]);
     }
 
@@ -63,7 +66,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return Inertia::render('Posts/Show', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -74,7 +79,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return Inertia::render('Posts/Edit', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -86,7 +93,17 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $user_id = Auth::id();
+        // $post = Post::findOrFail($id);
+        // $post->user_id = $user_id;
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->save();
+        return to_route('posts.index')
+        ->with([
+            'message' => '更新しました。',
+            'status' => '成功しました。',
+        ]);
     }
 
     /**
