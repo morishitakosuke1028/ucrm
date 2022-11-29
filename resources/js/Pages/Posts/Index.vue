@@ -12,18 +12,6 @@ const prop = defineProps({
     posts: Object
 });
 
-// array.sort((x, y) => {
-//     // 昇順
-//     return x - y
-//     // 降順
-//     // return y - x
-// })
-
-// const ascArray = array.sort((a, b) => new Date(a) - new Date(b));
-prop.posts.data.sort();
-console.log(prop);
-
-// const postArr = props.post
 </script>
 
 <template>

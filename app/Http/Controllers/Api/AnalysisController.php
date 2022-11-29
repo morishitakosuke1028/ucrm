@@ -17,6 +17,12 @@ class AnalysisController extends Controller
         if($request->type === 'perDay'){
             list($data, $labels, $totals) = AnalysisService::perDay($subQuery);
         }
+        if($request->type === 'perMonth'){
+            list($data, $labels, $totals) = AnalysisService::perMonth($subQuery);
+        }
+        if($request->type === 'perYear'){
+            list($data, $labels, $totals) = AnalysisService::perYear($subQuery);
+        }
 
 
         // Ajax通信なのでJsonで返却する必要がある
