@@ -20,9 +20,12 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.2.1",
+        "bootstrap-table": "^1.21.1",
         "chart.js": "^3.9.1",
         "dayjs": "^1.11.5",
         "micromodal": "^0.4.10",
+        "tableexport.jquery.plugin": "^1.26.0",
         "vue-chart-3": "^3.1.8",
         "yubinbango-core2": "^0.6.3"
     }
