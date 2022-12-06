@@ -1,9 +1,35 @@
+<script>
+
+import draggable from 'vuedraggable'
+
+export default {
+    components: { draggable },
+    data() {
+        return {
+            posts: [],
+            options: {
+                animation: 200
+            },
+        }
+    },
+    props: ['propPosts'],
+    mounted() {
+        this.posts = this.propPosts
+    },
+}
+
+
+
+</script>
+
+
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import FlashMessage from '@/Components/FlashMessage.vue';
 import Pagination from '@/Components/Pagination.vue'
 import dayjs from 'dayjs'
+// import draggable from 'vuedraggable'
 
 // const array = new Array(defineProps({
 //     posts: Array
@@ -11,7 +37,6 @@ import dayjs from 'dayjs'
 const prop = defineProps({
     posts: Object
 });
-
 </script>
 
 <template>
@@ -29,7 +54,6 @@ const prop = defineProps({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <!-- <BootstrapTableComponent models='@json($models)' /> -->
                         <BootstrapTableComponent />
                         <section class="text-gray-600 body-font">
                             <div class="container px-5 py-24 mx-auto">
@@ -47,6 +71,7 @@ const prop = defineProps({
                                                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">投稿日</th>
                                             </tr>
                                         </thead>
+                                        <draggable v-model="posts" :options="options">
                                         <tbody v-for="post in prop.posts.data" :key="post.id">
                                             <tr>
                                                 <td class="px-4 py-3">
@@ -59,6 +84,7 @@ const prop = defineProps({
                                                 <td class="px-4 py-3">{{ dayjs(post.created_at).format('YYYY-MM-DD HH:mm:ss') }}</td>
                                             </tr>
                                         </tbody>
+                                        </draggable>
                                     </table>
                                 </div>
                             </div>
