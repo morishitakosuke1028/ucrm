@@ -9,26 +9,6 @@ import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
-// window.Vue = require('vue');
-
-import '@fortawesome/fontawesome-free/js/all.js';
-import 'bootstrap-table/dist/bootstrap-table.min.css';
-import 'bootstrap-table/dist/bootstrap-table.js';
-
-// import 'tableexport.jquery.plugin';
-// import 'bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js';
-// import 'bootstrap-table/dist/extensions/print/bootstrap-table-print.min.js';
-
-import 'bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.css';
-import 'bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js';
-
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-// Vue.component('BootstrapTableComponent', require('./components/BootstrapTableComponent.vue').default);
-
-// const app = new Vue({
-//     el: '#app',
-// });
-
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 createInertiaApp({

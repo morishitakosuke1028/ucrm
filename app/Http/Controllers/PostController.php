@@ -19,10 +19,10 @@ class PostController extends Controller
     public function index()
     {
         //@TODO編集後updated_atの順番確認
-        $posts = Post::latest('id', 'user_id', 'title', 'content', 'created_at')->paginate(3);
+        // $posts = Post::latest('id', 'user_id', 'title', 'content', 'created_at')->paginate(10);
         return Inertia::render('Posts/Index', [
-            // 'posts' => Post::orderByRaw('id', 'user_id', 'title', 'content', 'created_at')->get()
-            'posts' => $posts
+            'posts' => Post::select('id', 'user_id', 'title', 'content', 'created_at')->get()
+            // 'posts' => $posts
         ]);
     }
 
