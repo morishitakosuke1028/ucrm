@@ -10,6 +10,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\AnalysisController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::get('/users/index', [UserController::class, 'index'])->middleware(['auth'
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth', 'verified'])->name('users.show');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'verified'])->name('users.edit');
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth', 'verified'])->name('users.update');
+
+Route::get('/password/change', [ChangePasswordController::class, 'edit'])->middleware(['auth', 'verified'])->name('password.edit');
+Route::put('/password/change', [ChangePasswordController::class, 'update'])->middleware(['auth', 'verified'])->name('password.update');
 
 
 Route::get('/inertia/index', [InertiaTestController::class, 'index'])->name('inertia.index');
