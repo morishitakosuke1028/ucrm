@@ -48,10 +48,6 @@ Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth'
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'verified'])->name('users.edit');
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth', 'verified'])->name('users.update');
 
-Route::get('/password/change', [ChangePasswordController::class, 'edit'])->middleware(['auth', 'verified'])->name('password.edit');
-Route::put('/password/change', [ChangePasswordController::class, 'update'])->middleware(['auth', 'verified'])->name('password.update');
-
-
 Route::get('/inertia/index', [InertiaTestController::class, 'index'])->name('inertia.index');
 Route::get('/inertia/create', [InertiaTestController::class, 'create'])->name('inertia.create');
 Route::post('/inertia', [InertiaTestController::class, 'store'])->name('inertia.store');
