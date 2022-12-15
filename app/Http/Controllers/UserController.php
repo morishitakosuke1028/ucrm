@@ -44,7 +44,6 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->member = $request->member;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
         $user->save();
         return to_route('users.index')
         ->with([

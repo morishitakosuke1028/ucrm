@@ -10,7 +10,6 @@ const form = reactive({
     id: props.user.id,
     name: props.user.name,
     email: props.user.email,
-    password: props.user.password,
     member: props.user.member
 })
 const updateUser = id => {
@@ -60,12 +59,7 @@ const updateUser = id => {
                                                     <label class="ml-2 mr-4">マークアップエンジニア</label>
                                                 </div>
                                             </div>
-                                            <div class="p-2 w-full">
-                                                <div class="relative">
-                                                    <label for="password" class="leading-7 text-sm text-gray-600">パスワード</label>
-                                                    <input type="password" id="password" name="password" v-model="form.password" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                                </div>
-                                            </div>
+
                                             <div class="p-2 w-full">
                                                 <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">更新する</button>
                                             </div>
