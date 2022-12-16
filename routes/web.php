@@ -48,6 +48,13 @@ Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth'
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'verified'])->name('users.edit');
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth', 'verified'])->name('users.update');
 
+Route::get('/contacts/index', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('contacts.index');
+Route::get('/contacts/create', [UserController::class, 'create'])->name('contacts.create');
+Route::post('/contacts', [UserController::class, 'store'])->middleware(['auth', 'verified'])->name('contacts.store');
+Route::get('/contacts/{user}', [UserController::class, 'show'])->middleware(['auth', 'verified'])->name('contacts.show');
+Route::get('/contacts/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'verified'])->name('contacts.edit');
+Route::put('/contacts/{user}', [UserController::class, 'update'])->middleware(['auth', 'verified'])->name('contacts.update');
+
 Route::get('/inertia/index', [InertiaTestController::class, 'index'])->name('inertia.index');
 Route::get('/inertia/create', [InertiaTestController::class, 'create'])->name('inertia.create');
 Route::post('/inertia', [InertiaTestController::class, 'store'])->name('inertia.store');
