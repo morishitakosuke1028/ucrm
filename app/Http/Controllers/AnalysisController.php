@@ -49,6 +49,33 @@ class AnalysisController extends Controller
         count(customer_id) as frequency,
         sum(totalPerPurchase) as monetary');
 
+        // 4. 会員毎のRFMランクを計算
+        $rfmPrms = [
+            14, 28, 60, 90, 7, 5, 3, 2, 300000, 200000, 100000, 30000 ];
+
+        $subQuery = DB::table($subQuery)
+        ->selectRaw('customer_id, customer_name,
+        recentDate, recency, frequency, monetary,
+        case
+            when recency < ? then 5
+            when recency < ? then 4
+            when recency < ? then 3
+            when recency < ? then 2
+            else 1 end as r,
+        case
+            when ? <= frequency then 5
+            when ? <= frequency then 4
+            when ? <= frequency then 3
+            when ? <= frequency then 2
+            else 1 end as f,
+        case
+            when ? <= monetary then 5
+            when ? <= monetary then 4
+            when ? <= monetary then 3
+            when ? <= monetary then 2
+            else 1 end as m', $rfmPrms);
+
+
         // dd($data);
         return Inertia::render('Analysis');
     }
