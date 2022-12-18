@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use Inertia\Inertia;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 
@@ -15,7 +16,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Contacts/Index', [
+            'contacts' => Contact::select('name', 'company', 'content', 'created_at')->get()
+        ]);
     }
 
     /**
