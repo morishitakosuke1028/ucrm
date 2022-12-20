@@ -129,11 +129,11 @@ function compareStringDesc(a, b) {
                                         </thead>
                                         <tbody v-for="contact in contacts" :key="contact.id">
                                             <tr>
-                                                <td class="px-4 py-3">
-                                                    <Link class="text-blue-400" :href="route('posts.show', { contact: contact.id })">
+                                                <!-- <td class="px-4 py-3"> -->
+                                                    <!-- <Link class="text-blue-400" :href="route('contacts.show', { contact: contact.id })">
                                                         {{ contact.id }}
-                                                    </Link>
-                                                </td>
+                                                    </Link> -->
+                                                <!-- </td> -->
                                                 <td class="px-4 py-3">{{ contact.name }}</td>
                                                 <td class="px-4 py-3">{{ contact.company }}</td>
                                                 <td class="px-4 py-3">{{ contact.content }}</td>

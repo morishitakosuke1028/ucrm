@@ -39,7 +39,13 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        //
+         Contact::create([
+            'id' => $request->id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'company' => $request->company,
+            'content' => $request->content,
+        ]);
     }
 
     /**

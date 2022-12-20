@@ -11,7 +11,7 @@ const form = reactive({
     company: null,
 })
 const storeContact = () => {
-    Inertia.contact('/contacts', form)
+    Inertia.post('/contacts', form)
 }
 </script>
 <template>
