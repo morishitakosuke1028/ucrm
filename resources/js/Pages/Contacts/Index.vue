@@ -104,7 +104,7 @@ function compareStringDesc(a, b) {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="text-xl text-gray-800 leading-tight">
                 お問い合わせ管理一覧
             </h2>
         </template>
@@ -121,19 +121,21 @@ function compareStringDesc(a, b) {
                                     <table id="sort_table">
                                         <thead>
                                             <tr>
+                                                <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">　</th>
                                                 <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">名前▼</th>
                                                 <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">会社名▼</th>
                                                 <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">内容▼</th>
                                                 <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">受信日▼</th>
                                             </tr>
                                         </thead>
-                                        <tbody v-for="contact in contacts" :key="contact.id">
-                                            <tr>
-                                                <!-- <td class="px-4 py-3"> -->
-                                                    <!-- <Link class="text-blue-400" :href="route('contacts.show', { contact: contact.id })">
-                                                        {{ contact.id }}
-                                                    </Link> -->
-                                                <!-- </td> -->
+                                        <tbody>
+                                            <tr v-for="contact in contacts" :key="contact.id">
+                                                <td class="px-4 py-3">
+                                                    <Link class="text-blue-400" :href="route('contacts.edit', { contact: contact.id })">
+                                                        <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">編集
+                                                        </button>
+                                                    </Link>
+                                                </td>
                                                 <td class="px-4 py-3">{{ contact.name }}</td>
                                                 <td class="px-4 py-3">{{ contact.company }}</td>
                                                 <td class="px-4 py-3">{{ contact.content }}</td>

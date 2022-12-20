@@ -17,7 +17,7 @@ class ContactController extends Controller
     public function index()
     {
         return Inertia::render('Contacts/Index', [
-            'contacts' => Contact::select('name', 'company', 'content', 'created_at')->get()
+            'contacts' => Contact::select('id', 'name', 'company', 'content', 'created_at')->get()
         ]);
     }
 
@@ -46,17 +46,7 @@ class ContactController extends Controller
             'company' => $request->company,
             'content' => $request->content,
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contact $contact)
-    {
-        //
+        return to_route('contacts.thanks');
     }
 
     /**
@@ -67,7 +57,9 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return Inertia::render('Contacts/Edit', [
+            'contact' => $contact
+        ]);
     }
 
     /**
