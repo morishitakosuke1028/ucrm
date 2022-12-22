@@ -14,5 +14,7 @@ class Contact extends Model
         'email',
         'company',
         'content',
+        'status',
+        'member',
     ];
 }

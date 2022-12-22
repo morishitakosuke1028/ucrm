@@ -124,7 +124,7 @@ function compareStringDesc(a, b) {
                                                 <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">　</th>
                                                 <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">名前▼</th>
                                                 <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">会社名▼</th>
-                                                <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">内容▼</th>
+                                                <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">ステータス▼</th>
                                                 <th class="px-4 py-3 title-font font-medium text-gray-900 text-sm bg-gray-100">受信日▼</th>
                                             </tr>
                                         </thead>
@@ -138,7 +138,7 @@ function compareStringDesc(a, b) {
                                                 </td>
                                                 <td class="px-4 py-3">{{ contact.name }}</td>
                                                 <td class="px-4 py-3">{{ contact.company }}</td>
-                                                <td class="px-4 py-3">{{ contact.content }}</td>
+                                                <td class="px-4 py-3">{{ contact.status }}</td>
                                                 <td class="px-4 py-3">{{ dayjs(contact.created_at).format('YYYY-MM-DD HH:mm:ss') }}</td>
                                             </tr>
                                         </tbody>

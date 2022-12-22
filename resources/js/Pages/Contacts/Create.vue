@@ -9,6 +9,8 @@ const form = reactive({
     email: null,
     content: null,
     company: null,
+    member: 1,
+    status: 2,
 })
 const storeContact = () => {
     Inertia.post('/contacts', form)
@@ -22,6 +24,8 @@ const storeContact = () => {
             <h1>お問い合わせフォーム</h1>
             <form @submit.prevent="storeContact">
                 <input type="hidden" name="id" id="id" v-model="form.id">
+                <input type="hidden" name="status" id="status" v-model="form.status">
+                <input type="hidden" name="member" id="member" v-model="form.member">
                 <div class="relative mb-4">
                     <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
                     <input type="text" id="name" name="name" v-model="form.name" class="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">

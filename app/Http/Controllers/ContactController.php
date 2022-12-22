@@ -17,7 +17,7 @@ class ContactController extends Controller
     public function index()
     {
         return Inertia::render('Contacts/Index', [
-            'contacts' => Contact::select('id', 'name', 'company', 'content', 'created_at')->get()
+            'contacts' => Contact::select('id', 'name', 'company', 'status', 'created_at')->get()
         ]);
     }
 
@@ -45,6 +45,8 @@ class ContactController extends Controller
             'email' => $request->email,
             'company' => $request->company,
             'content' => $request->content,
+            'member' => $request->member,
+            'status' => $request->status,
         ]);
         return to_route('contacts.thanks');
     }
