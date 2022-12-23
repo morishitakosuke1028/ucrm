@@ -100,6 +100,6 @@ class ContactController extends Controller
 
     public function thanks()
     {
-        //
+        return Inertia::render('Contacts/Thanks');
     }
 }
