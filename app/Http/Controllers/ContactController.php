@@ -73,7 +73,13 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
-        //
+        $contact->status = $request->status;
+        $contact->save();
+        return to_route('contacts.index')
+        ->with([
+            'message' => '更新しました。',
+            'status' => '成功しました。',
+        ]);
     }
 
     /**

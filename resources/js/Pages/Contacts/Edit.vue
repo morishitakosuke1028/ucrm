@@ -41,19 +41,25 @@ const updateContact = id => {
                                             <div class="p-2 w-full">
                                                 <div class="relative">
                                                     <label for="name" class="leading-7 text-sm text-gray-600">名前</label>
-                                                    <input type="text" id="name" name="name" v-model="form.name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                    <input type="text" id="name" name="name" v-model="form.name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" disabled>
                                                 </div>
                                             </div>
                                             <div class="p-2 w-full">
                                                 <div class="relative">
                                                     <label for="email" class="leading-7 text-sm text-gray-600">メールアドレス</label>
-                                                    <input type="text" id="email" name="email" v-model="form.email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                    <input type="text" id="email" name="email" v-model="form.email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" disabled>
                                                 </div>
                                             </div>
                                             <div class="p-2 w-full">
                                                 <div class="relative">
                                                     <label for="company" class="leading-7 text-sm text-gray-600">会社名</label>
-                                                    <input type="text" id="company" name="company" v-model="form.company" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                    <input type="text" id="company" name="company" v-model="form.company" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="p-2 w-full">
+                                                <div class="relative">
+                                                    <label for="content" class="leading-7 text-sm text-gray-600">お問い合わせ内容</label>
+                                                    <textarea id="content" name="content" v-model="form.content" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" disabled></textarea>
                                                 </div>
                                             </div>
                                             <div class="p-2 w-full">
@@ -65,12 +71,6 @@ const updateContact = id => {
                                                     <input type="radio" id="status" name="status" v-if="form.status === '1'" v-model="form.status" value="1" checked />
                                                     <input type="radio" id="status" name="status" v-else v-model="form.status" value="1" />
                                                     <label class="ml-2 mr-4">対応済み</label>
-                                                </div>
-                                            </div>
-                                            <div class="p-2 w-full">
-                                                <div class="relative">
-                                                    <label for="content" class="leading-7 text-sm text-gray-600">お問い合わせ内容</label>
-                                                    <textarea id="content" name="content" v-model="form.content" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                                                 </div>
                                             </div>
 
