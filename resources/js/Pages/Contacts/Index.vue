@@ -138,7 +138,8 @@ function compareStringDesc(a, b) {
                                                 </td>
                                                 <td class="px-4 py-3">{{ contact.name }}</td>
                                                 <td class="px-4 py-3">{{ contact.company }}</td>
-                                                <td class="px-4 py-3">{{ contact.status }}</td>
+                                                <td class="px-4 py-3" v-if="contact.status == '2'">未対応</td>
+                                                <td class="px-4 py-3" v-else>対応済み</td>
                                                 <td class="px-4 py-3">{{ dayjs(contact.created_at).format('YYYY-MM-DD HH:mm:ss') }}</td>
                                             </tr>
                                         </tbody>

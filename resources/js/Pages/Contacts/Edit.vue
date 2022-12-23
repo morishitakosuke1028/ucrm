@@ -12,6 +12,7 @@ const form = reactive({
     email: props.contact.email,
     company: props.contact.company,
     content: props.contact.content,
+    status: props.contact.status,
 })
 const updateContact = id => {
     Inertia.put(route('contacts.update', { contact: id }), form)
@@ -55,12 +56,17 @@ const updateContact = id => {
                                                     <input type="text" id="company" name="company" v-model="form.company" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                 </div>
                                             </div>
-                                            <!-- <div class="p-2 w-full">
+                                            <div class="p-2 w-full">
                                                 <div class="relative">
-                                                    <label for="status" class="leading-7 text-sm text-gray-600">ステータス</label>
-                                                    <input type="text" id="status" name="status" v-model="form.status" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                    <label for="status" class="leading-7 text-sm text-gray-600 mr-4">ステータス</label>
+                                                    <input type="radio" id="status" name="status" v-if="form.status === '2'" v-model="form.status" value="2" checked />
+                                                    <input type="radio" id="status" name="status" v-else v-model="form.status" value="2" />
+                                                    <label class="ml-2 mr-4">未対応</label>
+                                                    <input type="radio" id="status" name="status" v-if="form.status === '1'" v-model="form.status" value="1" checked />
+                                                    <input type="radio" id="status" name="status" v-else v-model="form.status" value="1" />
+                                                    <label class="ml-2 mr-4">対応済み</label>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                             <div class="p-2 w-full">
                                                 <div class="relative">
                                                     <label for="content" class="leading-7 text-sm text-gray-600">お問い合わせ内容</label>
