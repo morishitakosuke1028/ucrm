@@ -17,6 +17,11 @@ const form = reactive({
 const updateContact = id => {
     Inertia.put(route('contacts.update', { contact: id }), form)
 }
+const deleteContact = id => {
+    Inertia.delete(route('contacts.destroy', { contact: id }), {
+        onBefore: () => confirm('本当に削除しますか？')
+    })
+}
 </script>
 
 <template>
@@ -81,6 +86,9 @@ const updateContact = id => {
                                     </div>
                                 </div>
                             </form>
+                            <div class="p-2 w-full">
+                                <button @click="deleteContact(contact.id)" class="flex mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">削除する</button>
+                            </div>
                         </section>
                     </div>
                 </div>

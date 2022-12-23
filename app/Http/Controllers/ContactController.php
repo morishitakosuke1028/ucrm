@@ -90,7 +90,12 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return to_route('contacts.index')
+        ->with([
+            'message' => '削除しました。',
+            'status' => 'danger',
+        ]);
     }
 
     public function thanks()
