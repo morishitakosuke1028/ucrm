@@ -18,7 +18,9 @@ class Contact extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->email = $inputs['email'];
+        $this->title = $inputs['title'];
+        $this->body = $inputs['body'];
     }
 
     /**
@@ -28,6 +30,15 @@ class Contact extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+         // メールの設定
+        return $this
+            ->from('example@gmail.com')
+            ->subject('自動送信メール')
+            ->view('contact.mail')
+            ->with([
+            'email' => $this->email,
+            'title' => $this->title,
+            'body' => $this->body,
+            ]);
     }
 }
