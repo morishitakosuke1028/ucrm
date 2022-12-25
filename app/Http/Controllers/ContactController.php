@@ -6,6 +6,7 @@ use App\Models\Contact;
 use Inertia\Inertia;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
+use App\Mail\ContactsSendmail;
 
 class ContactController extends Controller
 {
@@ -101,5 +102,11 @@ class ContactController extends Controller
     public function thanks()
     {
         return Inertia::render('Contacts/Thanks');
+        $request->validate([
+            'email' => 'required|email',
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
     }
 }

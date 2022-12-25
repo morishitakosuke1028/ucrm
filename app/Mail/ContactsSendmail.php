@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Contact extends Mailable
+class ContactsSendmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,6 +18,7 @@ class Contact extends Mailable
      */
     public function __construct()
     {
+        // コンストラクタでプロパティに値を格納
         $this->email = $inputs['email'];
         $this->title = $inputs['title'];
         $this->body = $inputs['body'];
@@ -30,7 +31,6 @@ class Contact extends Mailable
      */
     public function build()
     {
-         // メールの設定
         return $this
             ->from('example@gmail.com')
             ->subject('自動送信メール')
