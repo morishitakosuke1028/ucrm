@@ -16,12 +16,8 @@ class ContactsSendmail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(private array $params)
     {
-        // コンストラクタでプロパティに値を格納
-        $this->email = $inputs['email'];
-        $this->title = $inputs['title'];
-        $this->body = $inputs['body'];
     }
 
     /**
@@ -37,8 +33,9 @@ class ContactsSendmail extends Mailable
             ->view('contact.mail')
             ->with([
             'email' => $this->email,
-            'title' => $this->title,
-            'body' => $this->body,
+            'name' => $this->name,
+            'content' => $this->content,
+            'company' => $this->company,
             ]);
     }
 }

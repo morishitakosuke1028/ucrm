@@ -40,7 +40,7 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-         Contact::create([
+        Contact::create([
             'id' => $request->id,
             'name' => $request->name,
             'email' => $request->email,
@@ -49,6 +49,19 @@ class ContactController extends Controller
             'member' => $request->member,
             'status' => $request->status,
         ]);
+
+        $params = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'company' => $request->company,
+            'content' => $request->content,
+        ];
+        try {
+            Mail::send(new ContactsSendmail($params)); // メール送信
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
         return to_route('contacts.thanks');
     }
 
@@ -102,11 +115,5 @@ class ContactController extends Controller
     public function thanks()
     {
         return Inertia::render('Contacts/Thanks');
-        $request->validate([
-            'email' => 'required|email',
-            'title' => 'required',
-            'body' => 'required'
-        ]);
-
     }
 }
