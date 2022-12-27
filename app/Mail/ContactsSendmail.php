@@ -27,15 +27,10 @@ class ContactsSendmail extends Mailable
      */
     public function build()
     {
-        return $this
+        return $this->to('admin@test.co.jp')
             ->from('example@gmail.com')
             ->subject('自動送信メール')
-            ->view('contact.mail')
-            ->with([
-            'email' => $this->email,
-            'name' => $this->name,
-            'content' => $this->content,
-            'company' => $this->company,
-            ]);
+            ->view('mail.contact')
+            ->with(['params' => $this->params]);
     }
 }

@@ -57,11 +57,10 @@ class ContactController extends Controller
             'content' => $request->content,
         ];
         try {
-            Mail::send(new ContactsSendmail($params)); // メール送信
+            \Mail::send(new ContactsSendmail($params)); // メール送信
         } catch (\Exception $e) {
             throw $e;
         }
-
         return to_route('contacts.thanks');
     }
 
