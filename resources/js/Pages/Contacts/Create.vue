@@ -9,6 +9,7 @@ const form = reactive({
     email: null,
     content: null,
     company: null,
+    work: [],
     member: 1,
     status: 2,
 })
@@ -34,11 +35,11 @@ const storeContact = () => {
                 <div class="relative mb-4">
                     <label for="work" class="leading-7 text-sm text-gray-600">Work</label>
                     <label for="work1" class="ml-10 mr-3 leading-7 text-sm text-gray-600">営業</label>
-                    <input type="checkbox" id="work1" name="work1" v-model="form.work" class="mr-3 bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out" value="1">
+                    <input type="checkbox" id="work1" name="work1[]" v-model="form.work" class="mr-3 bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out" value="1">
                     <label for="work1" class="ml-10 mr-3 leading-7 text-sm text-gray-600">エンジニア</label>
-                    <input type="checkbox" id="work2" name="work2" v-model="form.work" class="mr-3 bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out" value="2">
+                    <input type="checkbox" id="work2" name="work2[]" v-model="form.work" class="mr-3 bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out" value="2">
                     <label for="work1" class="ml-10 mr-3 leading-7 text-sm text-gray-600">デザイナー</label>
-                    <input type="checkbox" id="work3" name="work3" v-model="form.work" class="mr-3 bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out" value="3">
+                    <input type="checkbox" id="work3" name="work3[]" v-model="form.work" class="mr-3 bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out" value="3">
                 </div>
                 <div class="relative mb-4">
                     <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
