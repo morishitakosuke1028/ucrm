@@ -44,6 +44,7 @@ class ContactController extends Controller
             'id' => $request->id,
             'name' => $request->name,
             'email' => $request->email,
+            'work' => $request->work,
             'company' => $request->company,
             'content' => $request->content,
             'member' => $request->member,
