@@ -51,9 +51,10 @@ const deleteContact = id => {
                                             </div>
                                             <div class="p-2 w-full">
                                                 <div class="relative">
-                                                    <label for="work" class="leading-7 text-sm text-gray-600">希望職種</label>
-                                                    <input type="checkbox" id="work" name="work" v-model="form.work" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" disabled>
-                                                    <input type="checkbox" id="work" name="work" v-model="form.work" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" disabled>
+                                                    <label for="work" class="leading-7 text-sm text-gray-600">希望職種</label><br>
+                                                    <input type="text" id="work" name="work" v-model="form.work" v-if="form.work === '1'" class="bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700  leading-8 transition-colors duration-200 ease-in-out" disabled>営業
+                                                    <input type="text" id="work" name="work" v-model="form.work" v-if="form.work === '2'" class="bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700  leading-8 transition-colors duration-200 ease-in-out" disabled>エンジニア
+                                                    <input type="text" id="work" name="work" v-model="form.work" v-if="form.work === '3'" class="bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700  leading-8 transition-colors duration-200 ease-in-out" disabled>デザイナー
                                                 </div>
                                             </div>
                                             <div class="p-2 w-full">
