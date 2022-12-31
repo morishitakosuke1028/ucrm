@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
+    protected $casts = [
+        'work' => 'array',
+    ];
     use HasFactory;
     protected $fillable = [
         'id',
