@@ -39,7 +39,7 @@ class RecruitController extends Controller
      */
     public function store(StoreRecruitRequest $request)
     {
-        Contact::create([
+        Recruit::create([
             'id' => $request->id,
             'name' => $request->name,
             'email' => $request->email,
@@ -85,8 +85,8 @@ class RecruitController extends Controller
      */
     public function update(UpdateRecruitRequest $request, Recruit $recruit)
     {
-        $contact->status = $request->status;
-        $contact->save();
+        $recruit->status = $request->status;
+        $recruit->save();
         return to_route('recruits.index')
         ->with([
             'message' => '更新しました。',
