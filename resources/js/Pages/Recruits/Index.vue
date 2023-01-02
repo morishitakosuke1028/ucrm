@@ -130,10 +130,10 @@ function compareStringDesc(a, b) {
                                         <tbody>
                                             <tr v-for="recruit in recruits" :key="recruit.id">
                                                 <td class="px-4 py-3">
-                                                    <!-- <Link class="text-blue-400" :href="route('recruits.edit', { recruit: recruit.id })">
+                                                    <Link class="text-blue-400" :href="route('recruits.edit', { recruit: recruit.id })">
                                                         <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">編集
                                                         </button>
-                                                    </Link> -->
+                                                    </Link>
                                                 </td>
                                                 <td class="px-4 py-3">{{ recruit.name }}</td>
                                                 <td class="px-4 py-3" v-if="recruit.status == '2'">未対応</td>
