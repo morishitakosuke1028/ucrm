@@ -6,6 +6,7 @@ use App\Models\Recruit;
 use App\Http\Requests\StoreRecruitRequest;
 use App\Http\Requests\UpdateRecruitRequest;
 use Inertia\Inertia;
+use App\Mail\RecruitSendmail;
 
 class RecruitController extends Controller
 {
@@ -48,17 +49,16 @@ class RecruitController extends Controller
             'status' => $request->status,
         ]);
 
-        // $params = [
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'company' => $request->company,
-        //     'content' => $request->content,
-        // ];
-        // try {
-        //     \Mail::send(new ContactsSendmail($params)); // メール送信
-        // } catch (\Exception $e) {
-        //     throw $e;
-        // }
+        $params = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'content' => $request->content,
+        ];
+        try {
+            \Mail::send(new RecruitSendmail($params)); // メール送信
+        } catch (\Exception $e) {
+            throw $e;
+        }
         return to_route('recruits.thanks');
     }
 
