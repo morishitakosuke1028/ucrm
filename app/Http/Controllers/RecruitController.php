@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Recruit;
 use App\Http\Requests\StoreRecruitRequest;
 use App\Http\Requests\UpdateRecruitRequest;
+use Inertia\Inertia;
 
 class RecruitController extends Controller
 {
@@ -15,7 +16,9 @@ class RecruitController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Recruits/Index', [
+            'recruits' => Recruit::select('id', 'name', 'email', 'status', 'created_at')->get()
+        ]);
     }
 
     /**
@@ -25,7 +28,7 @@ class RecruitController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Recruits/Create');
     }
 
     /**
@@ -36,19 +39,29 @@ class RecruitController extends Controller
      */
     public function store(StoreRecruitRequest $request)
     {
-        //
+        Contact::create([
+            'id' => $request->id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'content' => $request->content,
+            'member' => $request->member,
+            'status' => $request->status,
+        ]);
+
+        // $params = [
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'company' => $request->company,
+        //     'content' => $request->content,
+        // ];
+        // try {
+        //     \Mail::send(new ContactsSendmail($params)); // メール送信
+        // } catch (\Exception $e) {
+        //     throw $e;
+        // }
+        return to_route('recruits.thanks');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Recruit  $recruit
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Recruit $recruit)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -58,7 +71,9 @@ class RecruitController extends Controller
      */
     public function edit(Recruit $recruit)
     {
-        //
+        return Inertia::render('Recruits/Edit', [
+            'recruit' => $recruit
+        ]);
     }
 
     /**
@@ -70,7 +85,13 @@ class RecruitController extends Controller
      */
     public function update(UpdateRecruitRequest $request, Recruit $recruit)
     {
-        //
+        $contact->status = $request->status;
+        $contact->save();
+        return to_route('recruits.index')
+        ->with([
+            'message' => '更新しました。',
+            'status' => '成功しました。',
+        ]);
     }
 
     /**
@@ -81,6 +102,16 @@ class RecruitController extends Controller
      */
     public function destroy(Recruit $recruit)
     {
-        //
+        $contact->delete();
+        return to_route('recruits.index')
+        ->with([
+            'message' => '削除しました。',
+            'status' => 'danger',
+        ]);
+    }
+
+    public function thanks()
+    {
+        return Inertia::render('Recruits/Thanks');
     }
 }
