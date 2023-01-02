@@ -11,6 +11,7 @@ use App\Http\Controllers\AnalysisController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RecruitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,14 @@ Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.st
 Route::get('/contacts/{contact}/edit', [ContactController::class, 'edit'])->middleware(['auth', 'verified'])->name('contacts.edit');
 Route::put('/contacts/{contact}', [ContactController::class, 'update'])->middleware(['auth', 'verified'])->name('contacts.update');
 Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->middleware(['auth', 'verified'])->name('contacts.destroy');
+
+Route::get('/recruits/index', [RecruitController::class, 'index'])->middleware(['auth', 'verified'])->name('recruits.index');
+Route::get('/recruits/create', [RecruitController::class, 'create'])->name('recruits.create');
+Route::get('/recruits/thanks', [RecruitController::class, 'thanks'])->name('recruits.thanks');
+Route::post('/recruits', [RecruitController::class, 'store'])->name('recruits.store');
+Route::get('/recruits/{recruit}/edit', [RecruitController::class, 'edit'])->middleware(['auth', 'verified'])->name('recruits.edit');
+Route::put('/recruits/{recruit}', [RecruitController::class, 'update'])->middleware(['auth', 'verified'])->name('recruits.update');
+Route::delete('/recruits/{recruit}', [RecruitController::class, 'destroy'])->middleware(['auth', 'verified'])->name('recruits.destroy');
 
 Route::get('/inertia/index', [InertiaTestController::class, 'index'])->name('inertia.index');
 Route::get('/inertia/create', [InertiaTestController::class, 'create'])->name('inertia.create');
