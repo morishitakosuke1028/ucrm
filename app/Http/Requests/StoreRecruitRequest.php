@@ -13,7 +13,7 @@ class StoreRecruitRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreRecruitRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:255',],
+            'content' => ['required',],
         ];
     }
 }
