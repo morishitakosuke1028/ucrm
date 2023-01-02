@@ -34,6 +34,9 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('users.index')" :active="route().current('users.index')">
                                     ダッシュボード
                                 </NavLink>
+                                <NavLink :href="route('recruits.index')" :active="route().current('recruits.index')">
+                                    求人
+                                </NavLink>
                                 <NavLink :href="route('contacts.index')" :active="route().current('contacts.index')">
                                     お問い合わせ管理一覧
                                 </NavLink>
