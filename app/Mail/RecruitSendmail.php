@@ -28,8 +28,8 @@ class RecruitSendmail extends Mailable
      */
     public function build()
     {
-        return $this->to('admin@test.co.jp')
-            ->from('example@gmail.com')
+        return $this->to('morishita@test.co.jp')
+            ->from('ucrmsys@gmail.com')
             ->subject('自動送信メール')
             ->view('mail.recruit')
             ->with(['params' => $this->params]);
