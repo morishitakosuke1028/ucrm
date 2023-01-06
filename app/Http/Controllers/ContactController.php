@@ -56,7 +56,6 @@ class ContactController extends Controller
             'email' => $request->email,
             'company' => $request->company,
             'content' => $request->content,
-            'member' => $request->member,
         ];
         try {
             \Mail::send(new ContactsSendmail($params)); // メール送信

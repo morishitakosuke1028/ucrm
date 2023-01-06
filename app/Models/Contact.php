@@ -9,7 +9,6 @@ class Contact extends Model
 {
     protected $casts = [
         'work' => 'array',
-        'member' => 'array',
     ];
     use HasFactory;
     protected $fillable = [

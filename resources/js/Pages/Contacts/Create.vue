@@ -10,7 +10,7 @@ const form = reactive({
     content: null,
     company: null,
     work: [],
-    member: [],
+    member: 1, //@TODO必要ない
     status: 2,
 })
 const storeContact = () => {
@@ -26,7 +26,8 @@ const storeContact = () => {
             <form @submit.prevent="storeContact">
                 <input type="hidden" name="id" id="id" v-model="form.id">
                 <input type="hidden" name="status" id="status" v-model="form.status">
-                <!-- <input type="hidden" name="member[]" id="member" v-model="form.member" v-bind="form.work"> -->
+                <!-- @TODO必要ない -->
+                <input type="hidden" name="member" id="member" v-model="form.member">
                 <div class="relative mb-4">
                     <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
                     <input type="text" id="name" name="name" v-model="form.name" class="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -40,7 +41,6 @@ const storeContact = () => {
                     <label for="work1" class="ml-10 mr-3 leading-7 text-sm text-gray-600">デザイナー</label>
                     <input type="checkbox" id="work3" name="work3[]" v-model="form.work" class="mr-3 bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out" value="3">
                 </div>
-                <input type="hidden" name="member[]" id="member" v-model="form.member" v-bind="form.work" />
                 <div class="relative mb-4">
                     <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
                     <input type="email" id="email" name="email" v-model="form.email" class="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
